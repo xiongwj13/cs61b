@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class LinkedListDeque<any_type> {
+public class LinkedListDeque<any_type>{
 
     private class ListNode{
         private ListNode prev;
@@ -52,24 +52,28 @@ public class LinkedListDeque<any_type> {
         }
     }
 
-    public void removeFirst(){
+    public any_type removeFirst(){
         if(size == 0){
-            return;
+            return null;
         }
         size -= 1;
         //sentinel.next.next.prev = sentinel;
         //sentinel.next = sentinel.next.next;
+        any_type returnValue = sentinel.next.value;
         sentinel.next = sentinel.next.next;
         sentinel.next.prev = sentinel;
+        return returnValue;
     }
 
-    public void removeLast(){
+    public any_type removeLast(){
         if(size == 0){
-            return;
+            return null;
         }
         size -= 1;
+        any_type returnValue = sentinel.prev.value;
         sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
+        return returnValue;
     }
 
     public any_type get(int index){

@@ -40,7 +40,7 @@ public class ArrayDeque<T> {
         return (usage < 0.25) && (Array.length > 16);
     }
 
-    public void resize(){
+    private void resize(){
         if(checkUsage()){
             int target_size = Array.length/2;
             T[] new_array = (T[]) new Object[target_size];
@@ -115,6 +115,7 @@ public class ArrayDeque<T> {
             returnValue = Array[nextFirst];
             Array[nextFirst] = null;
         }
+        usage = (float)size/(float)Array.length;
         resize();
         return returnValue;
     }
@@ -130,6 +131,7 @@ public class ArrayDeque<T> {
             returnValue = Array[nextLast];
             Array[nextLast] = null;
         }
+        usage = (float)size/(float)Array.length;
         resize();
         return returnValue;
     }
